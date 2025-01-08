@@ -12,7 +12,17 @@ Outcomes:
 Identified significant risk indicators (e.g., age, occupation, income type).
 Provided actionable insights for loan policy adjustments to reduce defaults and enhance targeting.
 
-## 2. BoomBikes – Linear Regression Model Building
+## 2. RSVP Movies – SQL Analysis
+Objective: Analyze movie data to guide global film production strategies.
+
+Methodology:
+Conducted SQL-based analysis of three years of movie data.
+Examined trends in genres, release patterns, and casting.
+
+Outcomes:
+Delivered actionable insights for audience targeting and strategic partnerships.
+
+## 3. BoomBikes – Linear Regression Model Building
 Objective: Predict daily bike demand for a US-based bike-sharing service.
 
 Methodology:
@@ -23,7 +33,7 @@ Outcomes:
 Achieved an R-squared score of 81%.
 Provided insights into seasonality and demand drivers, informing post-COVID-19 strategies.
 
-## 3. Lead Scoring
+## 4. Lead Scoring
 Objective: Improve lead conversion rates for a marketing dataset of ~9,000 leads.
 
 Methodology:
@@ -34,7 +44,7 @@ Outcomes:
 Achieved 80.24% accuracy on test data.
 Recommended focusing on high-potential leads to optimize the conversion process.
 
-## 4. Telecom Churn Prediction
+## 5. Telecom Churn Prediction
 Objective: Identify high-value customers at risk of churn for telecom markets in India and Southeast Asia.
 
 Methodology:
@@ -45,7 +55,7 @@ Outcomes:
 XGBoost achieved 92% accuracy and a 52% F1-score.
 Identified key churn indicators, enabling targeted retention strategies.
 
-## 5. Automatic Ticket Classification
+## 6. Automatic Ticket Classification
 Objective: Automate ticket classification for a financial company using NLP.
 
 Methodology:
@@ -54,16 +64,6 @@ Evaluated models, with logistic regression achieving 93% accuracy.
 
 Outcomes:
 Streamlined ticket handling and improved resolution efficiency.
-
-## 6. RSVP Movies – SQL Analysis
-Objective: Analyze movie data to guide global film production strategies.
-
-Methodology:
-Conducted SQL-based analysis of three years of movie data.
-Examined trends in genres, release patterns, and casting.
-
-Outcomes:
-Delivered actionable insights for audience targeting and strategic partnerships.
 
 ## 7. Chatbot-Based Recommendation System
 Objective: Build a fashion recommendation system using generative search techniques.
