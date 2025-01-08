@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment-Based Product Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Sentiment-Based Product Recommendation System</h2>
+        <form action="/recommend" method="post">
+            <label for="username">Enter Username:</label>
+            <input type="text" id="username" name="username" required>
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="output">
+            {% if prediction_text %}
+            <h3>{{ prediction_text }}</h3>
+            <ul>
+                {% for product in products %}
+                <li>
+                    <strong>Product Name:</strong> {{ product['name'] }} <br>
+                    <strong>Brand:</strong> {{ product['brand'] }} <br>
+                    <strong>Manufacturer:</strong> {{ product['manufacturer'] }} <br>
+                    <strong>Average Rating:</strong> {{ product['average_rating'] }} <br>
+                </li>
+                <br>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
