@@ -1,98 +1,138 @@
-# Data Science and Analytics
-This repository contains a collection of diverse data science and analytics projects that showcase expertise in data exploration, predictive modeling, natural language processing, and machine learning. Below is an overview of each project, detailing the problem statement, methodology, and outcomes.
+# H&M Customer Analytics
 
-## 1. Credit Risk Analysis – Exploratory Data Analysis (EDA)
-Objective: Evaluate factors influencing loan default risk in a consumer finance context.
+Customer analytics project focused on segmentation, churn prediction, customer value identification, and personalized recommendations using H&M transaction, customer, and product data.
 
-Methodology:
-Conducted EDA on client demographics, loan characteristics, and credit history.
-Addressed data imbalances, missing values, and outliers.
+## Table of Contents
+- [Overview](#overview)
+- [Business Problem](#business-problem)
+- [Objectives](#objectives)
+- [Dataset](#dataset)
+- [Approach](#approach)
+- [Key Results](#key-results)
+- [Business Recommendations](#business-recommendations)
+- [Tech Stack](#tech-stack)
+- [Project Files](#project-files)
+- [Future Improvements](#future-improvements)
+- [Author](#author)
 
-Outcomes:
-Identified significant risk indicators (e.g., age, occupation, income type).
-Provided actionable insights for loan policy adjustments to reduce defaults and enhance targeting.
+## Overview
+This project uses behavioral and transactional data to understand customer value, identify churn risk, and improve targeting and personalization. The analysis combines customer segmentation, lift/gain analysis, predictive modeling, and recommendation systems to support better marketing and retention decisions.
 
-## 2. RSVP Movies – SQL Analysis
-Objective: Analyze movie data to guide global film production strategies.
+## Business Problem
+H&M has a large customer base, but not all customers contribute equally to revenue or engagement. Many customers appear active through loyalty membership, while actual buying behavior shows dormancy, churn risk, and uneven value concentration.
 
-Methodology:
-Conducted SQL-based analysis of three years of movie data.
-Examined trends in genres, release patterns, and casting.
+The goal was to answer:
 
-Outcomes:
-Delivered actionable insights for audience targeting and strategic partnerships.
+**How can H&M use customer data to improve targeting efficiency, protect high-value customers, and personalize product recommendations?**
 
-## 3. BoomBikes – Linear Regression Model Building
-Objective: Predict daily bike demand for a US-based bike-sharing service.
+## Objectives
+- Segment customers based on purchase behavior
+- Identify high-value customers
+- Predict churn risk and prioritize retention
+- Improve campaign targeting efficiency
+- Build a personalized recommendation system
+- Translate analysis into actionable business strategy
 
-Methodology:
-Developed a multiple linear regression model using environmental and temporal features.
-Addressed data preparation challenges, including categorical encoding and trend analysis.
+## Dataset
+The project uses three datasets:
 
-Outcomes:
-Achieved an R-squared score of 81%.
-Provided insights into seasonality and demand drivers, informing post-COVID-19 strategies.
+### `customers.csv`
+Customer-level attributes such as:
+- age
+- postal code
+- club member status
+- fashion news frequency
 
-## 4. Lead Scoring
-Objective: Improve lead conversion rates for a marketing dataset of ~9,000 leads.
+### `transactions.csv`
+Transaction-level purchase history including:
+- customer ID
+- article ID
+- price
+- sales channel
+- transaction date
 
-Methodology:
-Built a logistic regression model with Recursive Feature Elimination (RFE).
-Conducted data cleaning and feature scaling.
+### `articles.csv`
+Product metadata including:
+- article ID
+- product type
+- color
+- department
+- index group
 
-Outcomes:
-Achieved 80.24% accuracy on test data.
-Recommended focusing on high-potential leads to optimize the conversion process.
+## Approach
 
-## 5. Telecom Churn Prediction
-Objective: Identify high-value customers at risk of churn for telecom markets in India and Southeast Asia.
+### 1. Exploratory Data Analysis
+Explored:
+- customer demographics
+- transaction trends over time
+- channel behavior
+- product category performance
+- purchase frequency and spending patterns
 
-Methodology:
-Implemented models (Logistic Regression, Random Forest, XGBoost) with RFE and PCA.
-Addressed class imbalance using hyperparameter tuning.
+### 2. RFM Segmentation
+Segmented customers using:
+- **Recency**
+- **Frequency**
+- **Monetary value**
 
-Outcomes:
-XGBoost achieved 92% accuracy and a 52% F1-score.
-Identified key churn indicators, enabling targeted retention strategies.
+Used RFM scores to identify customer groups such as Champions, At-Risk Champions, Potential Loyalists, and Lost customers.
 
-## 6. Automatic Ticket Classification
-Objective: Automate ticket classification for a financial company using NLP.
+### 3. Lift and Gain Analysis
+Measured how efficiently top segments captured high-value customers versus random targeting.
 
-Methodology:
-Topic modeling with Non-Negative Matrix Factorization (NMF).
-Evaluated models, with logistic regression achieving 93% accuracy.
+### 4. Customer Value Modeling
+Used regression and classification approaches to estimate customer value and classify high-value customers.
 
-Outcomes:
-Streamlined ticket handling and improved resolution efficiency.
+### 5. Churn Prediction
+Built churn models to identify customers likely to disengage based on behavioral signals.
 
-## 7. Chatbot-Based Recommendation System
-Objective: Build a fashion recommendation system using generative search techniques.
+### 6. Recommendation System
+Built a hybrid recommendation framework using customer purchase history and product information to generate personalized suggestions.
 
-Methodology:
-Leveraged LlamaIndex for indexing and OpenAI embeddings for vector-based search.
-Integrated GPT-3.5 for context-aware response generation.
+## Key Results
 
-Outcomes:
-Enhanced user experience with personalized recommendations.
-Enabled fast retrieval and context-based shopping assistance.
+- **2.00x targeting lift** achieved by focusing on top RFM segments
+- **41.96% of high-value customers captured** while targeting only **20.98%** of the customer base
+- Identified **200,107 At-Risk Champions**, representing **26.8% of customers**
+- Estimated **30 to 40% of revenue at risk** from high-value but disengaging customers
+- Logistic classification achieved **93.37% accuracy** and **98.43% ROC-AUC** for high-value customer prediction
+- Hybrid recommendation model achieved **MAP@12 = 0.2040**
 
-## 8. Sentiment-Based Product Recommendation System (Capstone)
-Objective: Develop a sentiment-driven recommendation engine for e-commerce.
+## Business Recommendations
+- Prioritize top RFM customers for premium acquisition and upsell campaigns
+- Launch retention campaigns for At-Risk Champions immediately
+- Shift marketing spend toward behavioral targeting instead of demographic targeting
+- Use churn risk and customer value together to guide offer intensity
+- Deploy personalized product recommendations in digital channels
 
-Methodology:
-Built sentiment analysis and collaborative filtering models.
-Deployed the system using Flask and Heroku.
+## Tech Stack
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
+- Seaborn
+- RFM Analysis
+- Lift and Gain Analysis
+- Logistic Regression
+- Decision Tree
+- Gradient Boosting
+- Collaborative Filtering
+- Recommendation Systems
 
-Outcomes:
-Tailored recommendations combining sentiment insights and user preferences.
+## Project Files
+- `Team_14_H&M_EDA.ipynb` - exploratory data analysis
+- `Team_14_H&M_Modeling.ipynb` - segmentation, churn, lift/gain, customer value modeling
+- `RecommendationSystemTeam14.ipynb` - recommendation system development
+- `EDA&Models.ipynb` - integrated analysis notebook
 
-Tools and Technologies
-Data Analysis: Python (Pandas, NumPy), SQL
-Modeling: Logistic Regression, Random Forest, XGBoost, Linear Regression
-Visualization: Power BI, Matplotlib, Seaborn
-NLP: NMF, LlamaIndex
-Deployment: Flask, Heroku
+## Future Improvements
+- Real-time customer scoring
+- Dynamic CLV forecasting
+- A/B testing on retention and targeting strategies
+- Channel attribution modeling
+- Product affinity and basket analysis
+- Production deployment of recommendation workflows
 
-
------
-### This portfolio demonstrates expertise in leveraging data-driven insights to solve real-world problems, optimize decision-making, and drive business success.
+## Author
+**Shivani Raut**
