@@ -1,138 +1,112 @@
 # H&M Customer Analytics
 
-Customer analytics project focused on segmentation, churn prediction, customer value identification, and personalized recommendations using H&M transaction, customer, and product data.
-
-## Table of Contents
-- [Overview](#overview)
-- [Business Problem](#business-problem)
-- [Objectives](#objectives)
-- [Dataset](#dataset)
-- [Approach](#approach)
-- [Key Results](#key-results)
-- [Business Recommendations](#business-recommendations)
-- [Tech Stack](#tech-stack)
-- [Project Files](#project-files)
-- [Future Improvements](#future-improvements)
-- [Author](#author)
-
 ## Overview
-This project uses behavioral and transactional data to understand customer value, identify churn risk, and improve targeting and personalization. The analysis combines customer segmentation, lift/gain analysis, predictive modeling, and recommendation systems to support better marketing and retention decisions.
 
-## Business Problem
-H&M has a large customer base, but not all customers contribute equally to revenue or engagement. Many customers appear active through loyalty membership, while actual buying behavior shows dormancy, churn risk, and uneven value concentration.
+Customer analytics initiative on **H&M-style retail data**: combine **RFM segmentation**, **lift and gain** analysis, **churn and value modeling**, and a **hybrid recommendation system** to improve targeting, retention, and personalization.
 
-The goal was to answer:
+The work connects exploratory analysis to **measurable campaign efficiency** (how much of the high-value base you reach for a given budget) and to **recommendation quality** (ranking metrics on held-out interactions).
 
-**How can H&M use customer data to improve targeting efficiency, protect high-value customers, and personalize product recommendations?**
+---
+
+## Business problem
+
+A large apparel retailer has uneven customer value: many loyalty members show **weak or dormant purchase behavior**, while a minority drives a disproportionate share of revenue. The central question:
+
+**How can the business use transactional and customer data to target more efficiently, protect high-value relationships, and personalize recommendations?**
+
+---
 
 ## Objectives
-- Segment customers based on purchase behavior
-- Identify high-value customers
-- Predict churn risk and prioritize retention
-- Improve campaign targeting efficiency
-- Build a personalized recommendation system
-- Translate analysis into actionable business strategy
 
-## Dataset
-The project uses three datasets:
+- Segment customers by purchase behavior (**RFM**)  
+- Identify **high-value** segments and quantify **at-risk** high-value customers  
+- Build **churn** and **value** models to prioritize outreach  
+- Quantify **targeting lift** vs random selection  
+- Deliver a **hybrid recommendation** approach using purchases and product metadata  
+- Translate findings into **actionable marketing and retention** recommendations  
 
-### `customers.csv`
-Customer-level attributes such as:
-- age
-- postal code
-- club member status
-- fashion news frequency
+---
 
-### `transactions.csv`
-Transaction-level purchase history including:
-- customer ID
-- article ID
-- price
-- sales channel
-- transaction date
+## Data
 
-### `articles.csv`
-Product metadata including:
-- article ID
-- product type
-- color
-- department
-- index group
+Expected inputs (typical H&M Kaggle–style schema):
+
+| Dataset | Contents |
+|---------|-----------|
+| `customers.csv` | Age, postal code, club member status, fashion news frequency, etc. |
+| `transactions.csv` | Customer ID, article ID, price, sales channel, timestamp |
+| `articles.csv` | Product metadata: type, color, department, index group, etc. |
+
+Obtain the official files from the **original competition or data provider** and place them where your notebooks read them (or update paths).
+
+---
 
 ## Approach
 
-### 1. Exploratory Data Analysis
-Explored:
-- customer demographics
-- transaction trends over time
-- channel behavior
-- product category performance
-- purchase frequency and spending patterns
+1. **EDA** — demographics, seasonality, channel mix, category performance, spend and frequency.  
+2. **RFM segmentation** — Recency, Frequency, Monetary scores; personas such as Champions, At-Risk Champions, Potential Loyalists, Lost.  
+3. **Lift and gain** — cumulative capture of high-value customers in top deciles vs baseline.  
+4. **Customer value modeling** — regression and classification to estimate / flag high-value customers.  
+5. **Churn prediction** — behavioral signals to flag disengagement risk.  
+6. **Recommendation system** — hybrid model blending collaborative signals with product information; ranking evaluated with **MAP@K**-style metrics (see modeling notebook).
 
-### 2. RFM Segmentation
-Segmented customers using:
-- **Recency**
-- **Frequency**
-- **Monetary value**
+---
 
-Used RFM scores to identify customer groups such as Champions, At-Risk Champions, Potential Loyalists, and Lost customers.
+## Final outcomes
 
-### 3. Lift and Gain Analysis
-Measured how efficiently top segments captured high-value customers versus random targeting.
+- **Segmentation & targeting:** RFM-based segments with **~2× lift** vs random when concentrating marketing on top behavioral tiers; **~42% of high-value customers** reachable while mailing **~21%** of the base (gain-chart interpretation from the analysis).
+- **Risk surfaced at scale:** **~200k+ “At-Risk Champions”** flagged (~27% of customers in the cohort), with revenue-at-risk framing for high-value customers cooling off.
+- **Predictive performance:** High-value customer classifier at **~93.4% accuracy** and **~98.4% ROC-AUC** (logistic model in notebook); churn modeling supports prioritized retention lists.
+- **Personalization:** Hybrid recommender achieves **MAP@12 ≈ 0.2040** on the evaluated setup—concrete ranking quality beyond naive popularity.
+- **Artifacts:** Three linked notebooks (**EDA → modeling → recommendations**) plus a concise **business recommendation** narrative suitable for a leadership readout.
 
-### 4. Customer Value Modeling
-Used regression and classification approaches to estimate customer value and classify high-value customers.
+---
 
-### 5. Churn Prediction
-Built churn models to identify customers likely to disengage based on behavioral signals.
+## Reported results (from project analysis)
 
-### 6. Recommendation System
-Built a hybrid recommendation framework using customer purchase history and product information to generate personalized suggestions.
+These figures come from the analytical notebooks; re-run to reproduce on your data snapshot.
 
-## Key Results
+- **~2.00× targeting lift** when focusing on top RFM tiers vs random  
+- **~41.96%** of high-value customers captured while targeting **~20.98%** of the base (gain chart interpretation)  
+- **~200k+ “At-Risk Champions”** identified (~27% of customers in the analyzed cohort)  
+- **Revenue-at-risk** framing: substantial share of revenue associated with high-value but cooling customers  
+- High-value classification: **~93.4% accuracy**, **~98.4% ROC-AUC** (logistic model in notebook)  
+- Hybrid recommender: **MAP@12 ≈ 0.2040**  
 
-- **2.00x targeting lift** achieved by focusing on top RFM segments
-- **41.96% of high-value customers captured** while targeting only **20.98%** of the customer base
-- Identified **200,107 At-Risk Champions**, representing **26.8% of customers**
-- Estimated **30 to 40% of revenue at risk** from high-value but disengaging customers
-- Logistic classification achieved **93.37% accuracy** and **98.43% ROC-AUC** for high-value customer prediction
-- Hybrid recommendation model achieved **MAP@12 = 0.2040**
+---
 
-## Business Recommendations
-- Prioritize top RFM customers for premium acquisition and upsell campaigns
-- Launch retention campaigns for At-Risk Champions immediately
-- Shift marketing spend toward behavioral targeting instead of demographic targeting
-- Use churn risk and customer value together to guide offer intensity
-- Deploy personalized product recommendations in digital channels
+## Business recommendations (summary)
 
-## Tech Stack
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- Matplotlib
-- Seaborn
-- RFM Analysis
-- Lift and Gain Analysis
-- Logistic Regression
-- Decision Tree
-- Gradient Boosting
-- Collaborative Filtering
-- Recommendation Systems
+- Prioritize **premium retention and upsell** for proven Champions  
+- Run **urgent win-back** for At-Risk Champions with clear offer logic  
+- Reallocate spend from broad demographic targeting to **behavioral** RFM-based lists  
+- Combine **churn probability** and **value** to decide **offer depth**  
+- Deploy recommendations in digital journeys where history is rich  
 
-## Project Files
-- `Team_14_H&M_EDA.ipynb` - exploratory data analysis
-- `Team_14_H&M_Modeling.ipynb` - segmentation, churn, lift/gain, customer value modeling
-- `RecommendationSystemTeam14.ipynb` - recommendation system development
-- `EDA&Models.ipynb` - integrated analysis notebook
+---
 
-## Future Improvements
-- Real-time customer scoring
-- Dynamic CLV forecasting
-- A/B testing on retention and targeting strategies
-- Channel attribution modeling
-- Product affinity and basket analysis
-- Production deployment of recommendation workflows
+## Tech stack
 
-## Author
-**Shivani Raut**
+Python · pandas · NumPy · scikit-learn · Matplotlib · Seaborn · RFM · lift/gain analysis · logistic regression · decision trees · gradient boosting · collaborative filtering · hybrid recommendation evaluation  
+
+---
+
+## Project files (this repository)
+
+| Notebook | Description |
+|----------|-------------|
+| `H&M_EDA.ipynb` | Exploratory data analysis |
+| `H&M_Modeling.ipynb` | Segmentation, churn, lift/gain, customer value modeling |
+| `H&M_Recommendation System.ipynb` | Recommendation system development and evaluation |
+
+
+---
+
+## Future work
+
+- Near–real-time scoring and feature stores  
+- Dynamic CLV forecasting and longitudinal validation  
+- A/B tests on retention creatives and offer bands  
+- Deeper **basket** and **cross-category** affinity models  
+- Production deployment of ranking and batch segment exports  
+
