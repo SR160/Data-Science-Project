@@ -1,138 +1,66 @@
-# H&M Customer Analytics
+# Data Science Portfolio
 
-Customer analytics project focused on segmentation, churn prediction, customer value identification, and personalized recommendations using H&M transaction, customer, and product data.
+Welcome. This repository collects end-to-end **machine learning**, **NLP**, **recommendation systems**, and **generative / retrieval** work applied to realistic business problems: retention, targeting, support automation, e-commerce personalization, and conversational product discovery.
 
-## Table of Contents
-- [Overview](#overview)
-- [Business Problem](#business-problem)
-- [Objectives](#objectives)
-- [Dataset](#dataset)
-- [Approach](#approach)
-- [Key Results](#key-results)
-- [Business Recommendations](#business-recommendations)
-- [Tech Stack](#tech-stack)
-- [Project Files](#project-files)
-- [Future Improvements](#future-improvements)
-- [Author](#author)
+Each project lives in its own folder with a dedicated README, artifacts (where applicable), and reproducible notebooks or application code.
 
-## Overview
-This project uses behavioral and transactional data to understand customer value, identify churn risk, and improve targeting and personalization. The analysis combines customer segmentation, lift/gain analysis, predictive modeling, and recommendation systems to support better marketing and retention decisions.
+---
 
-## Business Problem
-H&M has a large customer base, but not all customers contribute equally to revenue or engagement. Many customers appear active through loyalty membership, while actual buying behavior shows dormancy, churn risk, and uneven value concentration.
+## About the portfolio
 
-The goal was to answer:
+The work spans the full analytics lifecycle where it matters for hiring and collaboration:
 
-**How can H&M use customer data to improve targeting efficiency, protect high-value customers, and personalize product recommendations?**
+- **Problem framing** — business objectives, constraints, and success metrics  
+- **Data engineering** — loading, cleaning, feature design, and train/validation discipline  
+- **Modeling** — classical ML, text pipelines, matrix factorization, and modern embedding-based retrieval  
+- **Interpretation** — lift curves, confusion matrices, feature importance, and qualitative review  
+- **Delivery** — Flask prototypes and deployment-oriented structure (Capstone)
 
-## Objectives
-- Segment customers based on purchase behavior
-- Identify high-value customers
-- Predict churn risk and prioritize retention
-- Improve campaign targeting efficiency
-- Build a personalized recommendation system
-- Translate analysis into actionable business strategy
+If you are reviewing this for **recruiting or collaboration**, start with any project that aligns with your stack; each README summarizes methods, stack, and how to run or extend the work.
 
-## Dataset
-The project uses three datasets:
+---
 
-### `customers.csv`
-Customer-level attributes such as:
-- age
-- postal code
-- club member status
-- fashion news frequency
+## Projects at a glance
 
-### `transactions.csv`
-Transaction-level purchase history including:
-- customer ID
-- article ID
-- price
-- sales channel
-- transaction date
+| Project | Focus | Highlights |
+|--------|--------|------------|
+| [Telecom Churn Prediction](./Telecom%20Churn%20Prediction/README.md) | Classification, retention analytics | High-value customer definition, SMOTE, RFE + interpretable models, churn drivers |
+| [Automatic Ticket Classification](./Automatic%20Ticket%20Classification/README.md) | NLP, topic modeling, multi-class classification | NMF-derived labels → supervised routing (~93% test accuracy reported in notebook) |
+| [H&M Customer Analytics](./H&M%20Customer%20Analytics/README.md) | Customer analytics, CLV-style targeting, recsys | RFM, lift/gain, churn/value models, hybrid recommendations (MAP@12) |
+| [Sentiment-Based Product Recommendation (Capstone)](./Sentiment-Based%20Product%20Recommendation%20System%20%28Capstone%29/README.md) | NLP + collaborative filtering + web app | Sentiment model reranks CF candidates; Flask UI; Heroku-oriented layout |
+| [Chatbot-Based Recommendation System (Fashion Search AI)](./Chatbot-Based%20Recommendation%20System/README.md) | RAG, vector search, reranking | OpenAI embeddings, ChromaDB, cross-encoder rerank, generative answers |
 
-### `articles.csv`
-Product metadata including:
-- article ID
-- product type
-- color
-- department
-- index group
+---
 
-## Approach
+## Final outcomes (portfolio snapshot)
 
-### 1. Exploratory Data Analysis
-Explored:
-- customer demographics
-- transaction trends over time
-- channel behavior
-- product category performance
-- purchase frequency and spending patterns
+| Project | What shipped | Headline result |
+|--------|----------------|-------------------|
+| [Telecom Churn](./Telecom%20Churn%20Prediction/README.md) | HVC-scoped churn pipeline + interpretable models | ~**8.14%** churn among high-value customers (notebook); risk ranking + drivers for retention |
+| [Ticket classification](./Automatic%20Ticket%20Classification/README.md) | NMF pseudo-labels → supervised routers | ~**93%** test accuracy (multi-class, notebook execution) |
+| [H&M analytics](./H&M%20Customer%20Analytics/README.md) | RFM, lift/gain, value/churn models, hybrid recsys | ~**2×** targeting lift; high-value model **~93%** acc / **~98%** ROC-AUC; **MAP@12 ≈ 0.20** |
+| [Sentiment recommendations](./Sentiment-Based%20Product%20Recommendation%20System%20%28Capstone%29/README.md) | Sentiment + CF + Flask demo | Best sentiment run **~89%** accuracy; **user-based CF** **RMSE 2.46** vs item **3.58**; top-**5** reranked recommendations |
+| [Fashion Search AI](./Chatbot-Based%20Recommendation%20System/README.md) | Embeddings + ChromaDB + rerank + RAG answers | End-to-end **semantic** catalog Q&A with **images** (API-dependent quality) |
 
-### 2. RFM Segmentation
-Segmented customers using:
-- **Recency**
-- **Frequency**
-- **Monetary value**
+Each project README has a dedicated **Final outcomes** section with more detail and caveats.
 
-Used RFM scores to identify customer groups such as Champions, At-Risk Champions, Potential Loyalists, and Lost customers.
+---
 
-### 3. Lift and Gain Analysis
-Measured how efficiently top segments captured high-value customers versus random targeting.
+## Tech stack (across projects)
 
-### 4. Customer Value Modeling
-Used regression and classification approaches to estimate customer value and classify high-value customers.
+**Languages & core libraries:** Python, pandas, NumPy, scikit-learn  
 
-### 5. Churn Prediction
-Built churn models to identify customers likely to disengage based on behavioral signals.
+**Modeling & ML:** logistic regression, tree ensembles (Random Forest, XGBoost), SMOTE / imbalanced learning, RFE, NMF, collaborative filtering  
 
-### 6. Recommendation System
-Built a hybrid recommendation framework using customer purchase history and product information to generate personalized suggestions.
+**NLP & text:** NLTK, spaCy, TF-IDF, lemmatization, topic modeling  
 
-## Key Results
+**Modern retrieval & LLMs:** text embeddings, vector stores (ChromaDB), cross-encoders, retrieval-augmented generation patterns  
 
-- **2.00x targeting lift** achieved by focusing on top RFM segments
-- **41.96% of high-value customers captured** while targeting only **20.98%** of the customer base
-- Identified **200,107 At-Risk Champions**, representing **26.8% of customers**
-- Estimated **30 to 40% of revenue at risk** from high-value but disengaging customers
-- Logistic classification achieved **93.37% accuracy** and **98.43% ROC-AUC** for high-value customer prediction
-- Hybrid recommendation model achieved **MAP@12 = 0.2040**
+**Visualization & apps:** Matplotlib, Seaborn, Plotly, Flask, Gunicorn  
 
-## Business Recommendations
-- Prioritize top RFM customers for premium acquisition and upsell campaigns
-- Launch retention campaigns for At-Risk Champions immediately
-- Shift marketing spend toward behavioral targeting instead of demographic targeting
-- Use churn risk and customer value together to guide offer intensity
-- Deploy personalized product recommendations in digital channels
+---
 
-## Tech Stack
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- Matplotlib
-- Seaborn
-- RFM Analysis
-- Lift and Gain Analysis
-- Logistic Regression
-- Decision Tree
-- Gradient Boosting
-- Collaborative Filtering
-- Recommendation Systems
+## Portfolio author
 
-## Project Files
-- `Team_14_H&M_EDA.ipynb` - exploratory data analysis
-- `Team_14_H&M_Modeling.ipynb` - segmentation, churn, lift/gain, customer value modeling
-- `RecommendationSystemTeam14.ipynb` - recommendation system development
-- `EDA&Models.ipynb` - integrated analysis notebook
-
-## Future Improvements
-- Real-time customer scoring
-- Dynamic CLV forecasting
-- A/B testing on retention and targeting strategies
-- Channel attribution modeling
-- Product affinity and basket analysis
-- Production deployment of recommendation workflows
-
-## Author
-**Shivani Raut**
+**Shivani Raut**  
+[LinkedIn](https://www.linkedin.com/in/raut-shivani/)
