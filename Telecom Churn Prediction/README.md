@@ -56,20 +56,6 @@ Python · pandas · NumPy · scikit-learn · statsmodels · imbalanced-learn (SM
 
 ---
 
-## Project files
-
-| File | Description |
-|------|-------------|
-| `Telecom Churn Prediction.ipynb` | Full analysis: EDA, HVC + churn tagging, preprocessing, modeling, evaluation |
-
----
-
-## Data
-
-The notebook expects **`telecom_churn_data.csv`** in the working directory (standard telecom churn case-study schema with monthly usage and recharge columns). If your file lives elsewhere, update the `pd.read_csv(...)` path in the notebook.
-
----
-
 ## Possible extensions
 
 - Calibration curves and threshold tuning for retention campaigns  
