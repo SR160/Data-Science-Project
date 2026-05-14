@@ -49,14 +49,6 @@ Python · pandas · NumPy · NLTK · spaCy · scikit-learn · swifter · wordclo
 
 ---
 
-## Project files
-
-| File | Description |
-|------|-------------|
-| `Automatic Ticket Classification.ipynb` | Full pipeline from JSON load through NMF labeling and supervised models |
-
----
-
 ## Future improvements
 
 - Human-in-the-loop relabeling for ambiguous NMF–category mappings  
